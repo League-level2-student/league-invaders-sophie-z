@@ -17,6 +17,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     int currentState = MENU;
     Font titleFont;
     Timer frameDraw;
+    Rocketship r = new Rocketship(250, 600, 50, 50);
     
     public GamePanel() {
     	titleFont = new Font("Arial", Font.PLAIN, 48);
@@ -58,6 +59,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     void drawGameState(Graphics g) {
     	g.setColor(Color.BLACK);
     	g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+    	r.draw(g);
     }
     
     void drawEndState(Graphics g) {	
@@ -96,19 +98,27 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		    }
 		}
 		if (arg0.getKeyCode()==KeyEvent.VK_UP) {
-		    System.out.println("UP");
+		    if(r.y>=15) {
+			r.up();
+			}
 		}
 		else if (arg0.getKeyCode()==KeyEvent.VK_DOWN) {
-		    System.out.println("DOWN");
-		}
+		    if(r.y<=600) {
+		    r.down();
+		    }
 		else if (arg0.getKeyCode()==KeyEvent.VK_RIGHT) {
-		    System.out.println("RIGHT");
+		    if(r.x<=485) {
+			r.right();
+			}
 		}
 		else if (arg0.getKeyCode()==KeyEvent.VK_LEFT) {
-		    System.out.println("LEFT");
+			if(r.x>=15) {
+			r.left();
+			}
 		}
 	}
-
+	}
+	
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub

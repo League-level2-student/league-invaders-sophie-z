@@ -9,7 +9,7 @@ public class LeagueInvaders {
 	
 		public LeagueInvaders() {
 			this.frame = new JFrame();
-			this.gp = new GamePanel();
+			this.gp = new GamePanel();	
 		}
 	
 		void setup() {
