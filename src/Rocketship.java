@@ -15,18 +15,25 @@ public class Rocketship extends GameObject{
 	}
 	
 	void up() {
+		if(y>=15) {
 		y-=speed;
+		}
 	}
-	
 	void down() {
+		if(y<=600) {
 		y+=speed;
+		}
 	}
 	
 	void left() {
+		if(x>=15) {
 		x-=speed;
+		}
 	}
 	
 	void right() {
+		if(x<=485) {
 		x+=speed;
+		}
 	}
 }
