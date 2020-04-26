@@ -13,22 +13,21 @@ public class Rocketship extends GameObject{
 		super(x, y, width, height);
 		speed = 10;
 		if (needImage) {
-		    loadImage ("Rocket.png");
+		    loadImage ("Rocketship.png");
 		}
 		// TODO Auto-generated constructor stub
 	}
 
 	void draw(Graphics g) {
-		g.setColor(Color.BLUE);
-        g.fillRect(x, y, width, height);
         if (gotImage) {
-        	g.drawImage(image, x, y, width, height, null);
-        } else {
+        	g.drawImage(image, x-30, y, width, height, null);
+        } 
+        else {
         	g.setColor(Color.BLUE);
         	g.fillRect(x, y, width, height);
         }
 	}
-	
+
 	void up() {
 		if(y>=15) {
 		y-=speed;
@@ -63,4 +62,8 @@ public class Rocketship extends GameObject{
 	        needImage = false;
 	    }
 	}
+	
+	public Projectile getProjectile() {
+        return new Projectile(x+width/2, y, 10, 10);
+} 
 }
