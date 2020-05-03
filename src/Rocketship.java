@@ -19,7 +19,7 @@ public class Rocketship extends GameObject{
 	}
 
 	void draw(Graphics g) {
-        if (gotImage) {
+		if (gotImage) {
         	g.drawImage(image, x-30, y, width, height, null);
         } 
         else {
@@ -61,6 +61,11 @@ public class Rocketship extends GameObject{
 	        }
 	        needImage = false;
 	    }
+	}
+	
+	void update() {
+		super.update();
+		System.out.println("hi");
 	}
 	
 	public Projectile getProjectile() {

@@ -19,8 +19,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     int currentState = MENU;
     Font titleFont;
     Timer frameDraw;
-    Rocketship r = new Rocketship(250, 600, 50, 50);
-    ObjectManager om = new ObjectManager(r);
+    Rocketship r;
+    ObjectManager om;
     public static BufferedImage image;
     public static boolean needImage = true;
     public static boolean gotImage = false;	
@@ -30,6 +30,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     	titleFont = new Font("Arial", Font.PLAIN, 48);
     	frameDraw = new Timer(1000/60, this);
         frameDraw.start();
+        r = new Rocketship(250, 600, 50, 50);
+        om = new ObjectManager(r);
         if (needImage) {
             loadImage ("Galaxy.jpg");
         }
@@ -63,6 +65,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     
     void updateGameState() {	
     	om.update();
+    	if(r.isActive == false) {
+    		currentState = END;
+    	}
     }
 
     void updateEndState() {	
@@ -97,7 +102,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     	g.setColor(Color.WHITE);
     	g.drawString("GAME OVER", 105, 150);
     	g.setFont(getFont());
-    	g.drawString("You killed enemies", 200, 325);
+    	g.drawString("You killed " +om.getScore()+ " enemies", 200, 325);
     	g.drawString("Press ENTER to restart", 190, 425);
     }
 
@@ -111,7 +116,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		}else if(currentState == END){
 		    updateEndState();
 		}
-		System.out.println("action");
 		repaint();
 	}
 
@@ -134,6 +138,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		    else if(currentState == GAME) {
 		    	currentState = END;
 		    	alienSpawn.stop();
+		    	r = new Rocketship(250, 600, 50, 50);
+		    	om = new ObjectManager(r);
 		    }
 		    else {
 		        currentState++;
